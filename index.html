@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Srijana Khanal — Cloud & Network Security Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #030712;
+  --surface: #0d1117;
+  --surface2: #161b27;
+  --border: rgba(99,179,237,0.12);
+  --accent: #38bdf8;
+  --accent2: #818cf8;
+  --accent3: #34d399;
+  --text: #e2e8f0;
+  --muted: #64748b;
+  --heading: #f8fafc;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; font-size: 16px; line-height: 1.6; }
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.4; }
+body::after { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; z-index: 0; }
+nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; background: rgba(3,7,18,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; color: var(--heading); }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+#hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 48px 60px; position: relative; z-index: 1; }
+.hero-glow { position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(56,189,248,0.08) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.hero-glow-2 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(129,140,248,0.06) 0%, transparent 70%); top: 30%; right: 10%; pointer-events: none; }
+.hero-inner { max-width: 900px; position: relative; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); border-radius: 100px; padding: 6px 16px; margin-bottom: 32px; font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; color: var(--accent3); letter-spacing: 0.06em; }
+.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); animation: blink 1.5s ease-in-out infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+h1.hero-name { font-family: 'Syne', sans-serif; font-size: clamp(3.5rem, 8vw, 6.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em; color: var(--heading); margin-bottom: 24px; }
+h1.hero-name .line2 { -webkit-text-stroke: 1px rgba(56,189,248,0.6); color: transparent; }
+.hero-subtitle { font-size: 1.15rem; color: var(--muted); max-width: 580px; margin-bottom: 40px; line-height: 1.7; }
+.hero-subtitle strong { color: var(--accent); font-weight: 500; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; padding: 6px 14px; border-radius: 4px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); letter-spacing: 0.05em; }
+.tag.highlight { border-color: rgba(56,189,248,0.3); color: var(--accent); }
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.btn-primary { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.02em; padding: 14px 32px; background: var(--accent); color: var(--bg); border: none; border-radius: 6px; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; }
+.btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
+.btn-outline { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; padding: 14px 28px; border: 1px solid var(--border); color: var(--text); border-radius: 6px; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+.hero-meta { display: flex; gap: 32px; margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+.meta-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: var(--muted); }
+.meta-item svg { color: var(--accent); }
+section { padding: 100px 48px; position: relative; z-index: 1; }
+.section-label { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+.section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: var(--heading); margin-bottom: 16px; }
+.section-desc { font-size: 1rem; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 60px; }
+.max-container { max-width: 1100px; margin: 0 auto; }
+#stats { padding: 0 48px 80px; z-index: 1; position: relative; }
+.stats-row { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.stat-box { background: var(--surface); padding: 40px 32px; text-align: center; transition: background 0.2s; }
+.stat-box:hover { background: var(--surface2); }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800; color: var(--accent); letter-spacing: -0.04em; margin-bottom: 6px; }
+.stat-label { font-size: 0.82rem; color: var(--muted); letter-spacing: 0.03em; }
+#about { background: var(--surface); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.about-text p { color: var(--text); line-height: 1.85; margin-bottom: 20px; font-size: 1rem; }
+.visa-card { margin-top: 32px; padding: 20px 24px; background: rgba(52,211,153,0.06); border: 1px solid rgba(52,211,153,0.25); border-radius: 8px; display: flex; align-items: flex-start; gap: 14px; }
+.visa-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(52,211,153,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent3); }
+.visa-card h4 { font-weight: 600; color: var(--accent3); font-size: 0.9rem; margin-bottom: 4px; }
+.visa-card p { color: var(--muted); font-size: 0.85rem; margin: 0; }
+.about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.about-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 28px 24px; transition: border-color 0.2s, transform 0.2s; }
+.about-card:hover { border-color: rgba(56,189,248,0.3); transform: translateY(-2px); }
+.about-card-icon { font-size: 1.6rem; margin-bottom: 14px; }
+.about-card h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--heading); margin-bottom: 6px; }
+.about-card p { font-size: 0.82rem; color: var(--muted); }
+#experience { background: var(--bg); }
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent); }
+.timeline-item { position: relative; margin-bottom: 52px; }
+.timeline-item::before { content: ''; position: absolute; left: -38px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 4px rgba(56,189,248,0.15); }
+.timeline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+.timeline-role { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--heading); }
+.timeline-date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); padding: 4px 12px; border-radius: 100px; }
+.timeline-company { font-size: 0.9rem; color: var(--accent2); font-weight: 500; margin-bottom: 4px; }
+.timeline-location { font-size: 0.8rem; color: var(--muted); margin-bottom: 16px; font-family: 'JetBrains Mono', monospace; }
+.timeline-body { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; }
+.timeline-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.timeline-body li { position: relative; padding-left: 20px; font-size: 0.92rem; color: var(--text); line-height: 1.65; }
+.timeline-body li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: 0.75rem; top: 3px; }
+.tech-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.chip { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; padding: 3px 10px; border-radius: 4px; background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15); color: var(--accent); letter-spacing: 0.04em; }
+.chip.purple { background: rgba(129,140,248,0.06); border-color: rgba(129,140,248,0.2); color: var(--accent2); }
+#education { background: var(--surface); }
+.edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.edu-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 36px 32px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+.edu-card:hover { border-color: rgba(56,189,248,0.35); transform: translateY(-3px); }
+.edu-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.edu-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); color: var(--accent); display: inline-block; margin-bottom: 20px; }
+.honours-badge { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; padding: 3px 10px; border-radius: 100px; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.3); color: var(--accent3); margin-left: 8px; }
+.edu-degree { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--heading); margin-bottom: 6px; line-height: 1.3; }
+.edu-subject { font-size: 0.9rem; color: var(--accent); font-weight: 500; margin-bottom: 16px; }
+.edu-meta { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+.edu-meta span { font-size: 0.82rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+.edu-skills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); }
+.skill-pill { font-size: 0.72rem; padding: 4px 10px; border-radius: 4px; background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
+#skills { background: var(--bg); }
+.skills-wrapper { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 32px 28px; transition: border-color 0.2s; }
+.skill-group:hover { border-color: rgba(56,189,248,0.25); }
+.skill-group-title { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+.skill-group-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.skill-list { display: flex; flex-direction: column; gap: 12px; }
+.skill-item { display: flex; justify-content: space-between; align-items: center; }
+.skill-name { font-size: 0.88rem; color: var(--text); }
+.skill-bar-wrap { width: 100px; height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+.skill-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+#certifications { background: var(--surface); }
+.certs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.cert-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 24px 28px; display: flex; align-items: center; gap: 20px; transition: border-color 0.2s, transform 0.2s; }
+.cert-card:hover { border-color: rgba(56,189,248,0.3); transform: translateX(4px); }
+.cert-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.cert-card h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--heading); margin-bottom: 4px; line-height: 1.35; }
+.cert-card p { font-size: 0.78rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+#contact { background: var(--bg); }
+.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+.contact-info { display: flex; flex-direction: column; gap: 16px; }
+.contact-link { display: flex; align-items: center; gap: 14px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; transition: all 0.2s; }
+.contact-link:hover { border-color: rgba(56,189,248,0.4); transform: translateX(4px); }
+.contact-link-icon { width: 40px; height: 40px; background: rgba(56,189,248,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent); }
+.contact-link-text span { display: block; font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 3px; }
+.contact-link-text strong { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+.contact-cta { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 40px; }
+.contact-cta h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--heading); margin-bottom: 12px; }
+.contact-cta p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 28px; }
+.looking-for { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.looking-item { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; color: var(--text); }
+.looking-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent3); flex-shrink: 0; }
+footer { padding: 40px 48px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; color: var(--muted); font-size: 0.9rem; }
+.footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted); }
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; } .nav-links { display: none; }
+  #hero { padding: 100px 24px 60px; } section { padding: 80px 24px; } #stats { padding: 0 24px 60px; }
+  footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); } .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .edu-grid { grid-template-columns: 1fr; } .skills-wrapper { grid-template-columns: 1fr; }
+  .certs-grid { grid-template-columns: 1fr; } .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">SK<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">Available for opportunities in Ireland</div>
+    <h1 class="hero-name">Srijana Khanal</h1>
+    <p class="hero-subtitle"><strong>Cloud Infrastructure & Network Security Engineer</strong> — MSc with First-Class Honours. Building secure, scalable cloud environments and defending digital infrastructure.</p>
+    <div class="hero-tags">
+      <span class="tag highlight">AWS / Cloud</span>
+      <span class="tag highlight">Network Security</span>
+      <span class="tag highlight">Terraform / IaC</span>
+      <span class="tag highlight">CCNA</span>
+      <span class="tag">Ethical Hacking</span>
+      <span class="tag">Kali Linux</span>
+      <span class="tag">Python</span>
+      <span class="tag">Cryptography</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Let's Connect</a>
+      <a href="#experience" class="btn-outline">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        View My Work
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Limerick, Ireland</div>
+      <div class="meta-item"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>srijanakhanal1996@gmail.com</div>
+      <div class="meta-item"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.9v2.02z"/></svg>+353 899 760 270</div>
+      <div class="meta-item"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Stamp 1G Visa — No Sponsorship Needed</div>
+    </div>
+  </div>
+</section>
+
+<div id="stats">
+  <div class="stats-row">
+    <div class="stat-box fade-in"><div class="stat-num">1st</div><div class="stat-label">Class Honours — MSc Security</div></div>
+    <div class="stat-box fade-in"><div class="stat-num">5+</div><div class="stat-label">Certifications Earned</div></div>
+    <div class="stat-box fade-in"><div class="stat-num">3+</div><div class="stat-label">Years Cloud & IT Experience</div></div>
+    <div class="stat-box fade-in"><div class="stat-num">AWS</div><div class="stat-label">Terraform & Cloud Infrastructure</div></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="max-container">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <div class="section-label">// About Me</div>
+        <h2 class="section-title">Securing the Cloud, One Layer at a Time</h2>
+        <p>I'm a Cloud Infrastructure and Network Security Engineer with a <strong>Master's in Network and Information Security (First-Class Honours)</strong> from Griffith College Limerick, and a Bachelor's in Computer Systems Engineering.</p>
+        <p>With hands-on experience deploying cloud infrastructure using <strong>Terraform and AWS</strong>, implementing security protocols, and evaluating AI systems, I bring a rare combination of technical depth across cloud, networking, and security domains.</p>
+        <p>I'm driven by building resilient systems — whether that's scripting IaC deployments, hardening network perimeters, or analysing vulnerabilities with Kali Linux.</p>
+        <div class="visa-card">
+          <div class="visa-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><h4>✓ Full Work Authorization in Ireland</h4><p>Stamp 1G visa — eligible to work full-time without visa sponsorship required.</p></div>
+        </div>
+      </div>
+      <div class="about-cards fade-in">
+        <div class="about-card"><div class="about-card-icon">☁️</div><h4>Cloud Infrastructure</h4><p>AWS S3, Terraform IaC, cloud monitoring & configuration</p></div>
+        <div class="about-card"><div class="about-card-icon">🔒</div><h4>Network Security</h4><p>Ethical hacking, cryptography, vulnerability assessment</p></div>
+        <div class="about-card"><div class="about-card-icon">🌐</div><h4>Networking</h4><p>CCNA-trained, Cisco Packet Tracer, network engineering</p></div>
+        <div class="about-card"><div class="about-card-icon">🤖</div><h4>AI Evaluation</h4><p>LLM output analysis, accuracy & coherence assessment</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="max-container">
+    <div class="section-label">// Professional Experience</div>
+    <h2 class="section-title">Work History</h2>
+    <p class="section-desc">Hands-on experience across cloud infrastructure, network security, and AI systems evaluation.</p>
+    <div class="timeline">
+      <div class="timeline-item fade-in">
+        <div class="timeline-header"><div class="timeline-role">AI Model Trainer</div><div class="timeline-date">Dec 2024 – Present</div></div>
+        <div class="timeline-company">Outlier AI</div>
+        <div class="timeline-location">📍 Remote</div>
+        <div class="timeline-body">
+          <ul>
+            <li>Enhanced AI language models by providing structured feedback and evaluating responses for factual accuracy, correctness, and coherence.</li>
+            <li>Improved accuracy and relevance of AI-generated content by identifying edge cases and systematic failure patterns in LLM outputs.</li>
+            <li>Ensured outputs met high quality standards across technical, factual, and reasoning domains.</li>
+          </ul>
+          <div class="tech-chips"><span class="chip">LLM Evaluation</span><span class="chip">AI Quality Assurance</span><span class="chip">Technical Writing</span></div>
+        </div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-header"><div class="timeline-role">Junior Cloud Network Engineer</div><div class="timeline-date">Nov 2022 – May 2023</div></div>
+        <div class="timeline-company">WaftTech</div>
+        <div class="timeline-location">📍 Kathmandu, Nepal</div>
+        <div class="timeline-body">
+          <ul>
+            <li>Created Terraform scripts to deploy AWS S3 bucket resources for storing product images, ensuring reliable and scalable storage for an e-commerce platform.</li>
+            <li>Supported cloud configuration, monitoring, and routine operational tasks across the infrastructure stack.</li>
+            <li>Implemented robust security protocols, reducing vulnerabilities and strengthening data protection measures.</li>
+            <li>Fostered strong relationships with clients and colleagues; actively participated in knowledge-sharing sessions contributing to team growth.</li>
+          </ul>
+          <div class="tech-chips"><span class="chip">AWS S3</span><span class="chip">Terraform</span><span class="chip">Cloud Security</span><span class="chip">Infrastructure Monitoring</span><span class="chip purple">IaC</span><span class="chip purple">Network Protocols</span></div>
+        </div>
+      </div>
+      <div class="timeline-item fade-in">
+        <div class="timeline-header"><div class="timeline-role">IT Content Writer Intern</div><div class="timeline-date">May 2021 – Jul 2021</div></div>
+        <div class="timeline-company">SongsNepal</div>
+        <div class="timeline-location">📍 Kathmandu, Nepal</div>
+        <div class="timeline-body">
+          <ul>
+            <li>Analysed emerging tech trends for content creation, developing data-driven writing strategies that improved article engagement.</li>
+            <li>Conducted thorough research to ensure accuracy in complex IT topics, building skills in technical communication.</li>
+          </ul>
+          <div class="tech-chips"><span class="chip">Technical Research</span><span class="chip">Content Strategy</span><span class="chip">IT Trends Analysis</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="max-container">
+    <div class="section-label">// Education</div>
+    <h2 class="section-title">Academic Background</h2>
+    <p class="section-desc">Formal training in network security, cloud computing, and systems engineering.</p>
+    <div class="edu-grid">
+      <div class="edu-card fade-in">
+        <div class="edu-badge">Postgraduate</div>
+        <div class="edu-degree">Master of Science <span class="honours-badge">First-Class Honours</span></div>
+        <div class="edu-subject">Network and Information Security</div>
+        <div class="edu-meta"><span>🏛 Griffith College Limerick, Ireland</span><span>📅 Feb 2024 – Sep 2025</span></div>
+        <p style="font-size:0.87rem;color:var(--muted);line-height:1.65;">Graduated with First-Class Honours. Covered advanced topics in network security, cryptography, ethical hacking, legal & ethics, and information protection with hands-on Kali Linux training.</p>
+        <div class="edu-skills"><span class="skill-pill">Network Security</span><span class="skill-pill">Cryptography</span><span class="skill-pill">Ethical Hacking</span><span class="skill-pill">Kali Linux</span><span class="skill-pill">Bash</span><span class="skill-pill">Cloud Computing</span><span class="skill-pill">Java</span><span class="skill-pill">Python</span></div>
+      </div>
+      <div class="edu-card fade-in">
+        <div class="edu-badge">Undergraduate</div>
+        <div class="edu-degree">BSc (Hons)</div>
+        <div class="edu-subject">Computer System Engineering in Computer Science</div>
+        <div class="edu-meta"><span>🏛 University of Sunderland, Kathmandu, Nepal</span><span>📅 Jan 2018 – Dec 2022</span></div>
+        <p style="font-size:0.87rem;color:var(--muted);line-height:1.65;">Studied at ISMT College (affiliated with University of Sunderland, London). Built strong foundations in computer networks, cloud computing, Linux systems, and Python programming.</p>
+        <div class="edu-skills"><span class="skill-pill">Computer Networks</span><span class="skill-pill">Cisco Packet Tracer</span><span class="skill-pill">Linux</span><span class="skill-pill">Cloud Computing</span><span class="skill-pill">Kali Linux</span><span class="skill-pill">Python</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="max-container">
+    <div class="section-label">// Technical Skills</div>
+    <h2 class="section-title">Core Competencies</h2>
+    <p class="section-desc">A well-rounded stack spanning cloud, security, networking, and scripting.</p>
+    <div class="skills-wrapper">
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Cloud & IaC</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">AWS (S3, EC2)</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Terraform</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Cloud Monitoring</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Cloud Configuration</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:74%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Security</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Kali Linux</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Ethical Hacking</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Cryptography</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Security Protocols</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Networking</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Cisco / CCNA</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Packet Tracer</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:76%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Network Engineering</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:74%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Info Protection</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Programming</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Bash / Shell</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Java</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:62%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Linux CLI</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Systems & OS</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Linux / Ubuntu</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Kali Linux</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Windows Server</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div>
+        </div>
+      </div>
+      <div class="skill-group fade-in">
+        <div class="skill-group-title">Soft Skills</div>
+        <div class="skill-list">
+          <div class="skill-item"><span class="skill-name">Client Relations</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Technical Writing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Knowledge Sharing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:83%"></div></div></div>
+          <div class="skill-item"><span class="skill-name">Research</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:86%"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="max-container">
+    <div class="section-label">// Certifications</div>
+    <h2 class="section-title">Credentials & Training</h2>
+    <p class="section-desc">Industry-recognised certifications in cybersecurity and networking.</p>
+    <div class="certs-grid">
+      <div class="cert-card fade-in"><div class="cert-icon" style="background:rgba(234,179,8,0.12);">🔐</div><div><h4>Foundations of Cybersecurity</h4><p>Google · Aug 2024 – Present</p></div></div>
+      <div class="cert-card fade-in"><div class="cert-icon" style="background:rgba(59,130,246,0.12);">🛡️</div><div><h4>Career Essentials in Cybersecurity</h4><p>Microsoft & LinkedIn · Jul 2024 – Present</p></div></div>
+      <div class="cert-card fade-in"><div class="cert-icon" style="background:rgba(16,185,129,0.12);">🌐</div><div><h4>Basics of Cisco Networking</h4><p>LearnQuest · Oct 2024 – Present</p></div></div>
+      <div class="cert-card fade-in"><div class="cert-icon" style="background:rgba(139,92,246,0.12);">📡</div><div><h4>CCNA Training</h4><p>Broadway Infosys · Dec 2022 – Feb 2023</p></div></div>
+      <div class="cert-card fade-in"><div class="cert-icon" style="background:rgba(244,63,94,0.12);">🗣️</div><div><h4>Duolingo English Language Certificate</h4><p>Score: 120 / 150 · Jan 2024 – Present</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="max-container">
+    <div class="section-label">// Contact</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-desc">Open to cloud, network, and security roles in Ireland. Let's talk.</p>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <a href="mailto:srijanakhanal1996@gmail.com" class="contact-link">
+          <div class="contact-link-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg></div>
+          <div class="contact-link-text"><span>Email</span><strong>srijanakhanal1996@gmail.com</strong></div>
+        </a>
+        <a href="tel:+353899760270" class="contact-link">
+          <div class="contact-link-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.9v2.02z"/></svg></div>
+          <div class="contact-link-text"><span>Phone</span><strong>+353 899 760 270</strong></div>
+        </a>
+        <div class="contact-link" style="cursor:default;">
+          <div class="contact-link-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+          <div class="contact-link-text"><span>Location</span><strong>Limerick, Ireland</strong></div>
+        </div>
+      </div>
+      <div class="contact-cta fade-in">
+        <h3>What I'm Looking For</h3>
+        <p>I'm actively seeking roles in Ireland where I can apply my cloud, networking, and security expertise to make a real impact.</p>
+        <div class="looking-for">
+          <div class="looking-item">Cloud Infrastructure / DevSecOps Engineer</div>
+          <div class="looking-item">Network Security Engineer / Analyst</div>
+          <div class="looking-item">Cybersecurity Analyst / SOC Analyst</div>
+          <div class="looking-item">Junior Cloud Engineer (AWS / Azure / GCP)</div>
+          <div class="looking-item">Graduate or Entry-Level Security Roles</div>
+        </div>
+        <a href="mailto:srijanakhanal1996@gmail.com" class="btn-primary">Send Me an Email →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Srijana Khanal</div>
+  <div class="footer-copy">© 2025 · Cloud & Network Security Engineer · Limerick, Ireland</div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => { if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 80); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60 ? 'rgba(3,7,18,0.97)' : 'rgba(3,7,18,0.85)';
+});
+</script>
+</body>
+</html>
