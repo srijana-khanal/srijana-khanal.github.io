@@ -1,22 +1,20 @@
 # Srijana Khanal - Portfolio Website
 
-A modern, responsive portfolio website showcasing my skills, experience, and projects in Network Engineering and Cybersecurity.
+A modern, responsive portfolio website showcasing my skills, experience, and projects in Cloud Infrastructure, Network Engineering and Cybersecurity.
 
 ## 🚀 Live Site
 [https://srijana-khanal.github.io](https://srijana-khanal.github.io)
 
 ## 🛠️ Technologies Used
-- HTML5
-- CSS3 (Custom Properties, Flexbox, Grid)
-- Vanilla JavaScript
-- Font Awesome Icons
-- Google Fonts
+- **HTML5** — Semantic markup
+- **CSS3** — Custom Properties (CSS Variables), Flexbox, Grid, Animations
+- **Vanilla JavaScript** — Intersection Observer API for scroll animations
+- **Google Fonts** — Syne, DM Sans, JetBrains Mono
+- **SVG Icons** — Inline SVG for crisp icons
 
-## 📁 Structure
+## 📁 Project Structure
 ```
 ├── index.html      # Main HTML file
-├── styles.css      # Stylesheet
-├── script.js       # JavaScript functionality
 └── README.md       # Documentation
 ```
 
